@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     // Initialize Terraform
-                    withCredentials([aws(credentialsId: "${env.AWS_CREDENTIALS_ID}", region: 'us-east-1')]) {
+                    withCredentials([aws(credentialsId: "${env.AWS_CREDENTIALS_ID}", region: 'us-west-1')]) {
                         sh 'terraform init'
                     }
                 }
@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     // Generate Terraform plan
-                    withCredentials([aws(credentialsId: "${env.AWS_CREDENTIALS_ID}", region: 'us-east-1')]) {
+                    withCredentials([aws(credentialsId: "${env.AWS_CREDENTIALS_ID}", region: 'us-west-1')]) {
                         sh 'terraform plan -out=tfplan'
                     }
                 }
@@ -55,7 +55,7 @@ pipeline {
             steps {
                 script {
                     if (env.DESTROY_RESOURCES == 'true') {
-                        withCredentials([aws(credentialsId: "${env.AWS_CREDENTIALS_ID}", region: 'us-east-1')]) {
+                        withCredentials([aws(credentialsId: "${env.AWS_CREDENTIALS_ID}", region: 'us-west-1')]) {
                             sh 'terraform destroy --auto-approve'
                         }
                     } else {
