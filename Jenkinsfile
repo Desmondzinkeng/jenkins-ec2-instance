@@ -4,7 +4,7 @@ pipeline {
     environment {
         // Define any environment variables here, if needed
         // Example: AWS credentials ID for use with Terraform
-        AWS_CREDENTIALS_ID = '339712843218'
+        AWS_CREDENTIALS_ID = '273354639795'
         
         // Set this to 'true' or 'false' depending on whether you want to allow destruction
         DESTROY_RESOURCES = 'false'
@@ -44,7 +44,7 @@ pipeline {
             steps {
                 script {
                     // Apply the Terraform plan with auto-approval
-                    withCredentials([aws(credentialsId: "${env.AWS_CREDENTIALS_ID}", region: 'us-east-1')]) {
+                    withCredentials([aws(credentialsId: "${env.AWS_CREDENTIALS_ID}", region: 'us-west-1')]) {
                         sh 'terraform apply --auto-approve tfplan'
                     }
                 }
